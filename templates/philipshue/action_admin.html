@@ -1,0 +1,78 @@
+
+ <!-- action usual -->
+ [#if DATA_SOURCE="huebridge" || DATA_SOURCE=""#]
+ <!-- table huebridge search -->
+ [#if VIEW_MODE="search_huebridge" || VIEW_MODE=""#]
+ [#if CYCLERUN==1#]
+ <span class="label label-success" title="Статус цикла">Цикл запущен</span>
+ [#else#]
+ <span class="label label-danger" title="Статус цикла">Цикл остановлен</span>
+ [#endif#]
+ <div class="float-right">
+     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">About
+         <span class="glyphicon glyphicon-info-sign icon-white"></span>
+     </button>
+ </div>
+ <div>
+
+     &nbsp;&nbsp;&nbsp;
+
+
+ </div>
+
+
+
+
+  [#inc huebridge_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table huebridge search -->
+ <!-- table huebridge edit -->
+ [#if VIEW_MODE="edit_huebridge"#]
+   [#if ID!=""#]
+   [#if TITLE!=""#]<h4>[#TITLE#]</h4>[#endif TITLE#]
+
+<ul class="nav nav-tabs">
+
+  <li[#if TAB=""#] class="active"[#endif#]>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=<#VIEW_MODE#>&id=<#ID#>&tab="><#LANG_GENERAL#></a>
+  </li>
+  <li[#if TAB="data"#] class="active"[#endif#]>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=<#VIEW_MODE#>&id=<#ID#>&tab=data">&#060#LANG_DATA#&#062</a>
+  </li>
+</ul>
+&nbsp;<br/>
+   [#endif ID#]
+   [#if TAB=""#]
+    [#inc huebridge_edit_default.html#]
+   [#endif TAB#]
+   [#if TAB="data"#]
+    [#inc huebridge_edit_data.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table huebridge edit -->
+ <!-- table huebridge view --> 
+ [#if VIEW_MODE="view_huebridge"#]
+   [#if TAB=""#]
+    [#inc huebridge_view_default.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table huebridge view -->
+ [#endif DATA_SOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="huedevices"#]
+ <!-- table huedevices search -->
+ [#if VIEW_MODE="search_huedevices" || VIEW_MODE=""#]
+  [#inc huedevices_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table huedevices search -->
+ <!-- table huedevices edit -->
+ [#if VIEW_MODE="edit_huedevices"#]
+   [#inc huedevices_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table huedevices edit -->
+ <!-- table huedevices view --> 
+ [#if VIEW_MODE="view_huedevices"#]
+   [#inc huedevices_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table huedevices view -->
+ [#endif DATA_SOURCE#]
